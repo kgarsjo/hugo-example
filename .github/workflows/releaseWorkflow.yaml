@@ -1,0 +1,21 @@
+name: release-workflow
+run-name: Release workflow
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  verify-hugo-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo snap install hugo
+      - run: hugo
+      - uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false

@@ -1,9 +1,8 @@
 name: deploy-workflow
 run-name: Deploy workflow 
-on:
-  push:
-    branches:
-      - master
+on: 
+  release:
+    types: [published]
 jobs:
   deploy-to-netlify:
     runs-on: ubuntu-latest
