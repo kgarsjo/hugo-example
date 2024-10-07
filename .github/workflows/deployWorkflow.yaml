@@ -1,0 +1,20 @@
+name: deploy-workflow
+run-name: Deploy workflow 
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy-to-netlify:
+    runs-on: ubuntu-latest
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: sudo snap install hugo
+      - run: npm install -g netlify-cli
+      - run: hugo
+      - run: netlify deploy --prod --dir=public 
+        
+      
