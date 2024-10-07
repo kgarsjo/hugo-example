@@ -2,7 +2,7 @@ name: deploy-workflow
 run-name: Deploy workflow 
 on: 
   release:
-    types: [published]
+    types: [created]
 jobs:
   deploy-to-netlify:
     runs-on: ubuntu-latest
