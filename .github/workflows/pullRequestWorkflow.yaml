@@ -1,0 +1,11 @@
+name: pull-request-workflow
+run-name: Pull request workflow
+on: [pull_request]
+jobs:
+  verify-hugo-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo snap install hugo
+      - run: hugo
+      
