@@ -1,0 +1,4 @@
+{{ $fullpath := printf "content/%s" .path }}
+{{ with resources.Get (printf "content/%s" .path) }}
+    {{ .Content | markdownify }}
+{{ end }}

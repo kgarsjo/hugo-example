@@ -1,0 +1,17 @@
+{{ define "main" }}
+    <div class="hero">
+        <div class="hero-text">
+            {{ partial "usemarkdown" (dict "path" "hero.md") }}
+        </div>
+        <img class="hero-image" src='{{ with resources.Get "img/hero2.jpg" }} {{.RelPermalink }}{{ end }}'/>
+    </div>
+    <div class="details">
+        <div class="hours detail-item">
+            {{ partial "usemarkdown" (dict "path" "hours.md") }}
+        </div>
+        <div class="location detail-item">
+            {{ partial "usemarkdown" (dict "path" "location.md") }}
+        </div>
+    </div>
+{{ end }}
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<head>
+    {{- with resources.Get "css/main.css" }}
+        {{- if eq hugo.Environment "development" }}
+            <link rel="stylesheet" href="{{ .RelPermalink }}">
+        {{- else }}
+            {{- with . | minify | fingerprint }}
+            <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+            {{- end }}
+        {{- end }}
+    {{- end }}
+</head>
+<body>
+  <header>
+    <h1>{{ site.Title }}</h1>
+    <div class="social">
+        {{ with resources.Get "svg/facebook.svg" }}
+            <a class="social-item" href="https://www.facebook.com"><img src="{{ .RelPermalink }}" alt="Facebook" width="32" height="32"></a>
+        {{ end  }}
+        {{ with resources.Get "svg/instagram.svg" }}
+            <a class="social-item" href="https://www.instagram.com"><img src="{{ .RelPermalink }}" alt="Instagram" width="32" height="32"></a>
+        {{ end  }}
+        {{ with resources.Get "svg/youtube.svg" }}
+            <a class="social-item" href="https://www.youtube.com"><img src="{{ .RelPermalink }}" alt="Youtube" width="32" height="32"></a>
+        {{ end  }}
+    </div>
+  </header>
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer>
+    © 2024, Billy-Bob's Ball Bearing Bazaar
+  </footer>
+</body>
+</html>
