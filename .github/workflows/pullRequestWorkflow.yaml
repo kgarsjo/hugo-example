@@ -8,8 +8,8 @@ jobs:
     steps:
       - name: Checkout Changes
         uses: actions/checkout@v4
-      - name: Install Build Dependencies
-        run: sudo snap install hugo
-      - name: Build Website
-        run: hugo
+      # - name: Install Build Dependencies
+      #   run: sudo snap install hugo
+      # - name: Build Website
+      #   run: hugo
       
