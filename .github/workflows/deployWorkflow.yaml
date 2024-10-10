@@ -6,15 +6,22 @@ on:
       - master
 jobs:
   deploy-to-netlify:
+    name: Deploy to Netlify
     runs-on: ubuntu-latest
     env:
       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-      - run: sudo snap install hugo
-      - run: npm install -g netlify-cli
-      - run: hugo
-      - run: netlify deploy --prod --site=kg-hugo-example --dir=public
+      - name: Checkout Changes
+        uses: actions/checkout@v4
+      - name: Install Build-Time Environment
+        uses: actions/setup-node@v4
+      - name: Install Build Dependencies
+        run: sudo snap install hugo
+      - name: Install Deploy Dependencies
+        run: npm install -g netlify-cli
+      - name: Build Web Assets
+        run: hugo
+      - name: Deploy to Netlify
+        run: netlify deploy --prod --site=kg-hugo-example --dir=public
         
       
