@@ -2,10 +2,14 @@ name: pull-request-workflow
 run-name: Pull request workflow
 on: [pull_request]
 jobs:
-  verify-hugo-publish:
+  verify-website-build:
+    name: Verify Website Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: sudo snap install hugo
-      - run: hugo
+      - name: Checkout Changes
+        uses: actions/checkout@v4
+      - name: Install Build Dependencies
+        run: sudo snap install hugo
+      - name: Build Website
+        run: hugo
       
